@@ -1,36 +1,41 @@
+🛡️ Smart Vault - Decentralized Yield Optimizer
+A yield-optimizing vault that automatically deposits USDC into the best-performing DeFi protocols (Aave, Compound, GMX) based on their APY (Annual Percentage Yield).
 
-# Overview
-This repository is a slimmed down version of Chainlink's official repo. It clones *only* the Chainlink `contracts` folder and the repo automatically updates every time there is a new NPM release. 
+🔹 Automated Fund Rebalancing 🔄
+🔹 Secure Deposits & Withdrawals 🔐
+🔹 Uses Chainlink Keepers for Upkeep ⛓️
 
-- NPM's latest release can be found here: https://www.npmjs.com/package/@chainlink/contracts
-- Chainlink's official repo: https://github.com/smartcontractkit/chainlink
+📌 Features
+✅ Deposit & Withdraw USDC: Users can deposit and withdraw USDC at any time.
+✅ Automated Rebalancing: The contract moves funds to the best APY protocol.
+✅ Chainlink Keepers: Monitors and executes fund allocation automatically.
+✅ Mock Protocols for Testing: No real DeFi protocol interaction needed.
 
-# chainlink-brownie-contracts
+📂 Project Structure
+📜 SmartVault.sol - The core contract handling deposits, withdrawals, and rebalancing.
+📜 mocks/MockProtocols.sol - Simulates Aave, Compound, and GMX for testing.
+🧪 test/SmartVault.t.sol - Contains test cases written in Foundry.
 
-A minimal repo that is a copy of the npm package [@chainlink/contracts](https://www.npmjs.com/package/@chainlink/contracts). These contracts are taken from the [core chainlink github](https://github.com/smartcontractkit/chainlink), compressed, and deployed to npm. 
+🧪 Running Tests
+This project includes tests for deposit and withdraw functions. Other functions like testGetBestAPY(), testCheckUpkeep(), and testPerformUpkeep() require real price feed addresses, so they are omitted for educational purposes.
 
-Everyday at 3AM, the latest version of the package is updated here, this way, you can use the Chainlink contracts with foundry without having to use npm/yarn. This also makes other third party packages like Brownie and Ape easier to work with. 
+Run Tests Locally 🛠️
+sh
+Copy
+Edit
+forge test
+✅ Test Coverage
 
-## Usage
+testDeposit() 🟢 Passed
+testWithdraw() 🟢 Passed
+Other tests require real price feeds, so they are not included.
+🚀 Deployment
+To deploy the contract locally using Foundry
 
-### Foundry
 
-1. Run this in your projects root directory.
+📜 License
+This project is open-source under the MIT License. Feel free to use, modify, and share!
 
-```bash
-forge install smartcontractkit/chainlink-brownie-contracts --no-commit
-```
+🌟 Contribute & Connect
+If you find this project useful, star this repo ⭐ and share your feedback!  
 
-2. Then, update your `foundry.toml` to include the following in the `remappings`.
-
-```
-remappings = [
-  '@chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/src/',
-]
-```
-
->! IMPORTANT
-There were compatibility issues with `1.0.0`, `1.1.0` and `1.2.0`, where there were originally 2 versions of each version. We have deleted the deprecated and outdated versions so that there is no longer any conflict. 
-
-All the releases of this package are going to match the [@chainlink/contracts NPM tags](https://www.npmjs.com/package/@chainlink/contracts). 
-So the versioning will look "backwards", but we are starting with v0.2.1
